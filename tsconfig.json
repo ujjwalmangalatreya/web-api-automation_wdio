@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "moduleResolution": "node",
-        "module": "commonjs",
+        "module": "commonjs", // ✅ important for Mocha + ts-node
         "target": "es2022",
         "lib": [
             "es2022",
@@ -9,6 +9,7 @@
         ],
         "types": [
             "node",
+            "mocha",
             "@wdio/globals/types",
             "expect-webdriverio",
             "@wdio/mocha-framework"

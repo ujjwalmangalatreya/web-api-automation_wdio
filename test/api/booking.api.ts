@@ -4,18 +4,19 @@ const BASE_URL = 'https://restful-booker.herokuapp.com';
 
 export default class BookingApi {
      static async createBooking(data: any) {
-          try {
-               return await axios.post(`${BASE_URL}/booking`, data, {
-                    headers: { 'Content-Type': 'application/json', 'User-Agent': 'axios/booking-test' }
-               });
-          } catch (error: any) {
-               console.error('Create booking error:', error.response?.data || error.message);
-               throw error;
-          }
+          return axios.post(`${BASE_URL}/booking`, data, {
+               headers: { 'Content-Type': 'application/json' }
+          });
      }
 
      static async getBooking(id: number) {
-          return axios.get(`${BASE_URL}/booking/${id}`);
+          try {
+               return axios.get(`${BASE_URL}/booking/${id}`);   
+          } catch (error: any) {
+               console.error('Create booking error:', error.response?.data || error.message);
+               throw error;   
+          }
+          
      }
 
      static async updateBooking(id: number, data: any, token: string) {
@@ -33,6 +34,7 @@ export default class BookingApi {
                headers: { 'Cookie': `token=${token}` }
           });
      }
+
 
      static async getAuthToken() {
           const res = await axios.post(`${BASE_URL}/auth`, {
